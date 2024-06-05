@@ -16,7 +16,7 @@ public class enemyDetectPlayer : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         DetectPlayer();
         DetectPlayerByBullet();

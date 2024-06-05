@@ -13,12 +13,44 @@ public class Attack : MonoBehaviour
     public float throwAngleDiff = 5f;
     public float throwPowerDiff = 3f;
     private int count = 0;
+    private Transform hpBarTransform;
+    private GameObject atkStatusPrefap;
+    private GameObject atkStatusInstance;
+    public bool attacking = true;
 
     private void Start()
     {
         throwPoint = transform.Find("throwpoint");
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        hpBarTransform = transform.Find("HealthBar(Clone)");
+        atkStatusPrefap = Resources.Load<GameObject>("EmAttackStatus");
+        atkStatusInstance = Instantiate(atkStatusPrefap, hpBarTransform.position - new Vector3(0, -1, 0), Quaternion.identity);
+        atkStatusInstance.transform.SetParent(hpBarTransform);
+        atkStatusInstance.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+
         StartCoroutine(ThrowRockAtPlayer());
+    }
+
+    void FixedUpdate()
+    {
+        // toggle attack status
+        if (count <= 0)
+        {
+            if (attacking)
+            {
+                attacking = false;
+                atkStatusInstance.SetActive(false);
+            }
+        }
+        else
+        {
+            if (!attacking)
+            {
+                attacking = true;
+                atkStatusInstance.SetActive(true);
+            }
+        }
     }
 
     private IEnumerator ThrowRockAtPlayer()
@@ -78,7 +110,8 @@ public class Attack : MonoBehaviour
         return caculatedAngle;
     }
 
-    public void SetCount(int count) {
+    public void SetCount(int count)
+    {
         this.count = count;
     }
 }

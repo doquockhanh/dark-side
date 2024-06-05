@@ -11,11 +11,10 @@ public class WinpointController : MonoBehaviour
     public Camera mainCamera;
     public float zoomDuration = 2.0f;
     public float targetFOV = 10.0f;
-
     public float requiredStayTime = 2.0f;
-
     private float stayTimer = 0.0f;
     private bool isPlayerStaying = false;
+    public int totalOflevel = 3;
     void Start()
     {
         try
@@ -52,6 +51,10 @@ public class WinpointController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (mainCamera == null)
+            {
+                return;
+            }
             mainCamera.GetComponent<Zoom>().isDisable = true;
             isPlayerStaying = true;
             if (taskManager != null && taskManager.tasks.Count == 0)
@@ -65,6 +68,10 @@ public class WinpointController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (mainCamera == null)
+            {
+                return;
+            }
             mainCamera.GetComponent<Zoom>().isDisable = false;
             isPlayerStaying = false;
             stayTimer = 0.0f;
@@ -78,9 +85,8 @@ public class WinpointController : MonoBehaviour
         PlayerManager.Instance.SavePlayerData();
 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int sceneCount = SceneManager.sceneCountInBuildSettings;
 
-        if (currentSceneIndex < sceneCount - 1)
+        if (currentSceneIndex < totalOflevel - 1)
         {
             PlayerManager.Instance.SaveScene(currentSceneIndex + 1);
             SceneManager.LoadScene(currentSceneIndex + 1);
@@ -97,7 +103,8 @@ public class WinpointController : MonoBehaviour
 
         while (Time.time < startTime + zoomDuration)
         {
-            if (mainCamera == null) {
+            if (mainCamera == null)
+            {
                 break;
             }
             mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, 5, 5f * Time.deltaTime);

@@ -36,6 +36,11 @@ public class UseBoomerang : MonoBehaviour
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("player's bullet");
         if (bullets.Length == 0)
             ShotListening();
+
+    }
+
+    void FixedUpdate()
+    {
         UpdateTrajectory();
     }
 

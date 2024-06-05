@@ -25,6 +25,10 @@ public class Boomerang : MonoBehaviour
     void Update()
     {
         Rotate();
+    }
+
+    void FixedUpdate()
+    {
         if (inHighest)
         {
             if (fallingTime > 0)

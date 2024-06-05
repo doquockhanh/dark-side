@@ -20,7 +20,7 @@ public class Zoom : MonoBehaviour
         originalSize = mainCamera.orthographicSize;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (isDisable)
             return;
