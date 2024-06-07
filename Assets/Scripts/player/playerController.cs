@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
         boomerangInstance.transform.SetParent(hpBarTransform);
         boomerangInstance.transform.localScale = new Vector3(0.3f, 0.3f, 0);
         SwapGun();
+
+        transform.GetComponent<Stats>().OnLevelUp += OnLevelUp;
     }
 
     void Update()
@@ -82,5 +84,10 @@ public class PlayerController : MonoBehaviour
         {
             scriptInstance.enabled = false;
         }
+    }
+
+    public void OnLevelUp(Stats stats) {
+        Debug.Log("LV up");
+
     }
 }

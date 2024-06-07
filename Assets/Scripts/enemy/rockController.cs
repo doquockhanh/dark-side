@@ -8,10 +8,13 @@ public class RockController : MonoBehaviour
     private float damage = 1;
     public bool bulletNeedRotate = false;
     private Rigidbody2D rb;
+    private GameObject explosionPrefap;
+    public float explosionRange = 2f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        explosionPrefap = Resources.Load<GameObject>("Explosion");
     }
 
     void FixedUpdate()
@@ -38,7 +41,7 @@ public class RockController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Map") || other.gameObject.CompareTag("Object"))
         {
-            Destroy(gameObject);
+            ExplosionAndDestroy();
         }
 
         if (other.gameObject.CompareTag("Player"))
@@ -46,7 +49,15 @@ public class RockController : MonoBehaviour
             Stats targetStats = other.gameObject.transform.GetComponent<Stats>();
             targetStats.TakeDamage(damage);
 
-            Destroy(gameObject);
+            ExplosionAndDestroy();
         }
+    }
+
+    private void ExplosionAndDestroy()
+    {
+        GameObject expolosion = Instantiate(explosionPrefap, transform.position, Quaternion.identity);
+        Vector3 scale = expolosion.transform.localScale;
+        expolosion.transform.localScale = new Vector3(scale.x * explosionRange, scale.y * explosionRange, 1);
+        Destroy(gameObject);
     }
 }

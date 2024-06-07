@@ -13,6 +13,10 @@ GameObject:
   - component: {fileID: 1751319710762239250}
   - component: {fileID: -1122425912555853850}
   - component: {fileID: -5818335808137700214}
+  - component: {fileID: -6879653148587343725}
+  - component: {fileID: 49740425340250524}
+  - component: {fileID: 4393969523640859059}
+  - component: {fileID: -3265464711986187573}
   m_Layer: 0
   m_Name: enemy3
   m_TagString: enemy
@@ -75,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1460147541, guid: ed4edcc13cc60764181cc25a7679faf6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -124,6 +128,8 @@ MonoBehaviour:
   hpBarWidth: 1
   hpBarHeight: 1
   hpBarPosY: 2
+  damageTextPrefab: {fileID: 0}
+  expTextPrefab: {fileID: 0}
 --- !u!61 &-5818335808137700214
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153,7 +159,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.78125}
@@ -169,3 +175,76 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3125, y: 1.5625}
   m_EdgeRadius: 0
+--- !u!114 &-6879653148587343725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5835456884660252742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419eeba1ab297b1438e1b34c2167bc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &49740425340250524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5835456884660252742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a816c0a29a939ce4fac393946e43e6be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followSpeed: 3
+  approachDistance: 10
+  dashSpeed: 20
+  dashDistance: 5
+  knockbackForce: 20
+  dashCooldown: 3
+  hitPerDash: 0
+--- !u!114 &4393969523640859059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5835456884660252742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0350495080d90ae42ba152d1931ee3eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  minChangeTime: 2
+  maxChangeTime: 4
+--- !u!50 &-3265464711986187573
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5835456884660252742}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

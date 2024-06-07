@@ -15,6 +15,7 @@ public class Stats : MonoBehaviour
     public float lvHeath = 0;
     public float lvExp = 0;
     private HpBar hpBar;
+    public event System.Action<Stats> OnLevelUp;
 
 
     void Start()
@@ -61,5 +62,9 @@ public class Stats : MonoBehaviour
         maxHeath += lvHeath * lv;
         damage += lvDmg * lv;
         hpBar.UpdateHealth(heath, maxHeath);
+
+        if (OnLevelUp != null) {
+            OnLevelUp?.Invoke(this);
+        }
     }
 }
