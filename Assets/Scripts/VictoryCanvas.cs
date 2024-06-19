@@ -15,7 +15,7 @@ public class VictoryMenu : MonoBehaviour
         text.gameObject.SetActive(false);
         nameInputField.gameObject.SetActive(false);
         okButton.gameObject.SetActive(false);
-        okButton.onClick.AddListener(SaveName);
+        okButton.onClick.AddListener(SaveRecord);
     }
 
     public void ShowVictoryMenu()
@@ -30,14 +30,23 @@ public class VictoryMenu : MonoBehaviour
         okButton.gameObject.SetActive(true);
     }
 
-    private void SaveName()
+    private void SaveRecord()
     {
         string playerName = nameInputField.text;
-
         PlayerManager.Instance.name = playerName;
         PlayerManager.Instance.SavePlayerName();
+        Stats stats = PlayerManager.Instance.playerStats;
+        float gr = stats.damage * 10 + stats.maxHeath * 5 + stats.heath * 3;
+
+        Record record = new()
+        {
+            name = PlayerManager.Instance.name,
+            gr = gr + "",
+            level = $"{stats.lv},{stats.exp}" 
+        };
+        LeaderBoard.Instance.WriteRecordToFile(record);
 
         GameManager.Instance.Resume();
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("LeaderBoard");
     }
 }

@@ -40,6 +40,10 @@ public class Stats : MonoBehaviour
                     gameObject.GetComponent<EnemyController>().Die();
 
             }
+            if (gameObject.transform.CompareTag("Player"))
+            {
+                gameObject.GetComponent<PlayerController>().Die();
+            }
         }
     }
 

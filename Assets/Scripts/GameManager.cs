@@ -49,6 +49,7 @@ public class GameManager : Singleton<GameManager>
         if (PlayerPrefs.HasKey("Scene"))
         {
             int scene = int.Parse(PlayerPrefs.GetString("Scene"));
+            Debug.Log(scene);
             SceneManager.LoadScene(scene);
         }
         else
@@ -79,9 +80,15 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void LeaderBoard()
+    {
+        SceneManager.LoadScene("LeaderBoard");
+    }
+
     void AddDisableScript()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if(player == null) return;
         scriptsToDisable.Add(player.GetComponent<Move_jump>());
         scriptsToDisable.Add(player.GetComponent<UseBoomerang>());
         scriptsToDisable.Add(player.GetComponent<UseGun>());
