@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     private Stats playerStats;
+    private List<MonoBehaviour> scriptsToDisable = new();
 
     public void SaveGame()
     {
-        PlayerManager.Instance.SavePlayerData();
+        PlayerManager.Instance.SavePlayerStats();
     }
 
     public void LoadPlayerStats()
@@ -38,8 +39,7 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
-            PlayerManager.Instance.playerName = "Khanh";
-            Debug.Log("show box to enter username");
+            PlayerManager.Instance.playerName = "Unknow PLayer";
         }
         SceneManager.LoadScene(0);
     }
@@ -57,4 +57,33 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+        if (scriptsToDisable.Count == 0) AddDisableScript();
+        foreach (MonoBehaviour script in scriptsToDisable)
+        {
+            if (script == null) continue;
+            script.enabled = false;
+        }
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+        if (scriptsToDisable.Count == 0) AddDisableScript();
+        foreach (MonoBehaviour script in scriptsToDisable)
+        {
+            if (script == null) continue;
+            script.enabled = true;
+        }
+    }
+
+    void AddDisableScript()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        scriptsToDisable.Add(player.GetComponent<Move_jump>());
+        scriptsToDisable.Add(player.GetComponent<UseBoomerang>());
+        scriptsToDisable.Add(player.GetComponent<UseGun>());
+    }
 }

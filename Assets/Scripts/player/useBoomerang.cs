@@ -67,6 +67,7 @@ public class UseBoomerang : MonoBehaviour
         {
             isCharging = false;
             Shoot();
+            ShootSfx();
 
             // ve vi tri ban lan cuoi
             Vector2 newPos = lastFireUi.anchoredPosition;
@@ -88,6 +89,10 @@ public class UseBoomerang : MonoBehaviour
 
         Rigidbody2D rb = boomerang.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(direction.x, direction.y).normalized * currentForce;
+    }
+
+    void ShootSfx() {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.win);
     }
 
     void UpdateTrajectory()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class RockController : MonoBehaviour
 {
     public GameObject throwBy;
+    private float weaponDame = 1;
     private float damage = 1;
     public bool bulletNeedRotate = false;
     private Rigidbody2D rb;
@@ -21,7 +22,7 @@ public class RockController : MonoBehaviour
     {
         if (throwBy != null && throwBy.transform != null)
         {
-            damage = throwBy.transform.GetComponent<Stats>().damage;
+            damage = throwBy.transform.GetComponent<Stats>().damage * weaponDame;
         }
 
         if (!bulletNeedRotate)
@@ -41,6 +42,7 @@ public class RockController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Map") || other.gameObject.CompareTag("Object"))
         {
+            // DealExplosiveDamage();
             ExplosionAndDestroy();
         }
 
@@ -59,5 +61,19 @@ public class RockController : MonoBehaviour
         Vector3 scale = expolosion.transform.localScale;
         expolosion.transform.localScale = new Vector3(scale.x * explosionRange, scale.y * explosionRange, 1);
         Destroy(gameObject);
+    }
+
+    private void DealExplosiveDamage()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRange);
+        foreach (Collider2D nearbyObject in colliders)
+        {
+            float distance = Vector2.Distance(transform.position, nearbyObject.transform.position);
+            float damagePercentage = Mathf.Clamp01(1 - (distance / explosionRange));
+            if (nearbyObject.transform.TryGetComponent<Stats>(out var stats))
+            {
+                stats.TakeDamage(damagePercentage * damage);
+            }
+        }
     }
 }

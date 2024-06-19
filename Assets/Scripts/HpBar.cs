@@ -85,7 +85,7 @@ public class HpBar : MonoBehaviour
         pos.x = Random.Range(hpBar.transform.position.x - 1f, hpBar.transform.position.x + 1f);
         GameObject damageText = Instantiate(damageTextPrefab, pos, Quaternion.identity);
         Text text = damageText.GetComponent<Text>();
-        text.text = $"-{damageAmount} dmg";
+        text.text = $"-{damageAmount} hp";
         damageText.transform.SetParent(hpBar.transform);
         damageText.transform.localScale = new Vector3(1f, 1f, 0);
         StartCoroutine(FadeOutAndDestroy(damageText, 2.5f));

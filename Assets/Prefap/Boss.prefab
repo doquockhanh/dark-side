@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2079225716146640049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8647247899430134983}
+  m_Layer: 0
+  m_Name: detectPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8647247899430134983
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079225716146640049}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.04, y: 0.91, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5360934245677800889}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4087667747324645014
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,6 +45,10 @@ GameObject:
   - component: {fileID: 6004331583562646319}
   - component: {fileID: -79363142706370368}
   - component: {fileID: -6658493811934005774}
+  - component: {fileID: 6967151182376548263}
+  - component: {fileID: 1912796438098436463}
+  - component: {fileID: 7780934887410023148}
+  - component: {fileID: -4600305289357467746}
   m_Layer: 0
   m_Name: Boss
   m_TagString: enemy
@@ -33,7 +68,9 @@ Transform:
   m_LocalPosition: {x: -8.5529, y: 92.3, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8647247899430134983}
+  - {fileID: 3316062839463675926}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7749347756692056739
@@ -125,6 +162,8 @@ MonoBehaviour:
   hpBarWidth: 2
   hpBarHeight: 3
   hpBarPosY: 10
+  damageTextPrefab: {fileID: 0}
+  expTextPrefab: {fileID: 0}
 --- !u!50 &-79363142706370368
 Rigidbody2D:
   serializedVersion: 4
@@ -197,3 +236,98 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5625, y: 1.625}
   m_EdgeRadius: 0
+--- !u!114 &6967151182376548263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4087667747324645014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419eeba1ab297b1438e1b34c2167bc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1912796438098436463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4087667747324645014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7daa180171ef2c044ba91020a911064e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  range: 20
+  movingRight: 1
+  minFlipTime: 1
+  maxFlipTime: 5
+  stopDelay: 1
+--- !u!114 &7780934887410023148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4087667747324645014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6153897b4e688ff43b5b8d28d96ce6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockPrefab: {fileID: 4532331287038438446, guid: 1b0cc42a875e90247a8f7a29f22b9a34, type: 3}
+  throwInterval: 3
+  throwAngle: 35
+  throwAngleDiff: 0
+  throwPowerDiff: 0
+  attacking: 1
+--- !u!114 &-4600305289357467746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4087667747324645014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e340f775a15dee4d9d8218abd3290c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyDetectbulletRange: 5
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!1 &4816673472596265710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3316062839463675926}
+  m_Layer: 0
+  m_Name: throwpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3316062839463675926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4816673472596265710}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.68, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5360934245677800889}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

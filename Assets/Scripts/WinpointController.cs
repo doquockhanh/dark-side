@@ -15,6 +15,7 @@ public class WinpointController : MonoBehaviour
     private float stayTimer = 0.0f;
     private bool isPlayerStaying = false;
     public int totalOflevel = 3;
+    public VictoryMenu victoryMenu;
     void Start()
     {
         try
@@ -31,7 +32,7 @@ public class WinpointController : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerStaying)
+        if (isPlayerStaying && stayTimer < requiredStayTime)
         {
             stayTimer += Time.deltaTime;
             if (stayTimer >= requiredStayTime)
@@ -82,7 +83,7 @@ public class WinpointController : MonoBehaviour
     private void GoToNextLvOrWin()
     {
         PlayerManager.Instance.playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<Stats>();
-        PlayerManager.Instance.SavePlayerData();
+        PlayerManager.Instance.SavePlayerStats();
 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
@@ -93,7 +94,8 @@ public class WinpointController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Chiến thắng!");
+            GameManager.Instance.Pause();
+            victoryMenu.ShowVictoryMenu();
         }
     }
 

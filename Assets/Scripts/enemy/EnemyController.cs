@@ -10,6 +10,11 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        Stats thisStats = transform.GetComponent<Stats>();
+        for (int i = 1; i < player.GetComponent<Stats>().lv; i++)
+        {
+            thisStats.LevelUp();
+        }
         try
         {
             taskManager = GameObject.Find("TaskHolder").GetComponent<TaskManagerHolder>().taskManager;

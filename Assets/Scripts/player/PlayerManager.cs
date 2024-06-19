@@ -20,15 +20,21 @@ public class PlayerManager : Singleton<PlayerManager>
     public Stats playerStats;
     public string playerName;
 
-    public void SavePlayerData()
+    public void SavePlayerStats()
     {
         string json = JsonUtility.ToJson(playerStats);
         PlayerPrefs.SetString("PlayerStats", json);
+        PlayerPrefs.Save();
+    }
+
+    public void SavePlayerName()
+    {
         PlayerPrefs.SetString("PlayerName", playerName);
         PlayerPrefs.Save();
     }
 
-    public void SaveScene(int scene) {
+    public void SaveScene(int scene)
+    {
         PlayerPrefs.SetString("Scene", scene.ToString());
     }
 

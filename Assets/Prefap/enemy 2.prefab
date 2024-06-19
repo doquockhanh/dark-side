@@ -383,8 +383,11 @@ MonoBehaviour:
   rockPrefab: {fileID: 4532331287038438446, guid: 1b0cc42a875e90247a8f7a29f22b9a34, type: 3}
   throwInterval: 3
   throwAngle: 20
-  throwAngleDiff: 5
-  throwPowerDiff: 3
+  throwAngleDiff: 10
+  throwPowerDiff: 25
+  maxForce: 30
+  minForce: 5
+  attacking: 1
 --- !u!1 &6912639970381220964
 GameObject:
   m_ObjectHideFlags: 0

@@ -88,6 +88,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnLevelUp(Stats stats) {
         Debug.Log("LV up");
-
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+        foreach (GameObject enemy in enemies) {
+            enemy.GetComponent<Stats>().LevelUp();
+        }
     }
 }

@@ -6,12 +6,14 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public GameObject rockPrefab;
-    private Transform player;
+    private Transform target;
     private Transform throwPoint;
     public float throwInterval = 3f;
-    public float throwAngle = 35f;
-    public float throwAngleDiff = 5f;
-    public float throwPowerDiff = 3f;
+    public float throwAngle = 0;
+    public int throwAngleDiff = 0;
+    public int throwPowerDiff = 0;
+    public int maxForce = 10;
+    public int minForce = 2;
     private int count = 0;
     private Transform hpBarTransform;
     private GameObject atkStatusPrefap;
@@ -21,7 +23,7 @@ public class Attack : MonoBehaviour
     private void Start()
     {
         throwPoint = transform.Find("throwpoint");
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform.Find("detectPoint").transform;
 
         hpBarTransform = transform.Find("HealthBar(Clone)");
         atkStatusPrefap = Resources.Load<GameObject>("EmAttackStatus");
@@ -66,7 +68,7 @@ public class Attack : MonoBehaviour
 
             float _throw_angle = CalculateThrowAngle(throwAngle);
             GameObject rock = Instantiate(rockPrefab, throwPoint.position, Quaternion.identity);
-            Vector3 initialVelocity = CalculateInitialVelocity(throwPoint.position, player.position, _throw_angle);
+            Vector3 initialVelocity = CalculateInitialVelocity(throwPoint.position, target.position, _throw_angle);
 
             Rigidbody2D rb = rock.GetComponent<Rigidbody2D>();
             rock.GetComponent<RockController>().throwBy = gameObject;
@@ -87,8 +89,9 @@ public class Attack : MonoBehaviour
         float denominator = 2 * (heightDifference - distance * Mathf.Tan(angleRad)) * Mathf.Pow(Mathf.Cos(angleRad), 2);
 
         float velocityMagnitude = Mathf.Sqrt(Mathf.Abs(Physics.gravity.y * distance * distance / denominator));
+        velocityMagnitude = Mathf.Min(Mathf.Max(velocityMagnitude, minForce), maxForce);
 
-        Vector3 velocity = direction.normalized * CalculateThrowPower(velocityMagnitude) * Mathf.Cos(angleRad);
+        Vector3 velocity = CalculateThrowPower(velocityMagnitude) * Mathf.Cos(angleRad) * direction.normalized;
         velocity.y = velocityMagnitude * Mathf.Sin(angleRad);
 
         return velocity;
@@ -96,16 +99,18 @@ public class Attack : MonoBehaviour
 
     private float CalculateThrowPower(float power)
     {
-        float min = power > throwPowerDiff ? power - throwPowerDiff : 0;
-        float max = power + throwPowerDiff;
+        float powerDiff = power * throwPowerDiff / 100;
+        float min = power > powerDiff ? power - powerDiff : 0;
+        float max = power + powerDiff;
         float calculatedPower = UnityEngine.Random.Range(min, max);
         return calculatedPower;
     }
 
     private float CalculateThrowAngle(float angle)
     {
-        float min = angle - throwAngleDiff > 0 ? angle - throwAngleDiff : 360 - (angle - throwAngleDiff);
-        float max = (angle + throwAngleDiff) % 360;
+        float angleDiff = angle * throwPowerDiff / 100;
+        float min = angle - angleDiff > 0 ? angle - angleDiff : 360 - (angle - angleDiff);
+        float max = (angle + angleDiff) % 360;
         float caculatedAngle = UnityEngine.Random.Range(min, max);
         return caculatedAngle;
     }

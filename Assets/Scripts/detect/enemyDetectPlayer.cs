@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyDetectPlayer : MonoBehaviour
+public class EnemyDetectPlayer : MonoBehaviour
 {
     private GameObject player;
     private Transform bullet;

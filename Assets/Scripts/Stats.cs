@@ -18,7 +18,7 @@ public class Stats : MonoBehaviour
     public event System.Action<Stats> OnLevelUp;
 
 
-    void Start()
+    void Awake()
     {
         hpBar = transform.GetComponent<HpBar>();
         hpBar.UpdateHealth(heath, maxHeath);
@@ -53,7 +53,7 @@ public class Stats : MonoBehaviour
         }
     }
 
-    void LevelUp()
+    public void LevelUp()
     {
         exp = 0;
         lv += 1;
