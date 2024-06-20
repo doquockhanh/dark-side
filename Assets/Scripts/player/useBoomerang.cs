@@ -92,7 +92,7 @@ public class UseBoomerang : MonoBehaviour
     }
 
     void ShootSfx() {
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.win);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.shoot);
     }
 
     void UpdateTrajectory()

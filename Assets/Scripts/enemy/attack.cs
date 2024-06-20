@@ -19,6 +19,7 @@ public class Attack : MonoBehaviour
     private GameObject atkStatusPrefap;
     private GameObject atkStatusInstance;
     public bool attacking = true;
+    public bool isBosstype = false;
 
     private void Start()
     {
@@ -69,6 +70,11 @@ public class Attack : MonoBehaviour
             float _throw_angle = CalculateThrowAngle(throwAngle);
             GameObject rock = Instantiate(rockPrefab, throwPoint.position, Quaternion.identity);
             Vector3 initialVelocity = CalculateInitialVelocity(throwPoint.position, target.position, _throw_angle);
+            if (isBosstype)
+            {
+                AddAttackForBoss();
+            }
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.shoot);
 
             Rigidbody2D rb = rock.GetComponent<Rigidbody2D>();
             rock.GetComponent<RockController>().throwBy = gameObject;
@@ -76,6 +82,27 @@ public class Attack : MonoBehaviour
             {
                 rb.velocity = initialVelocity;
             }
+        }
+    }
+
+    void AddAttackForBoss()
+    {
+        float _throw_angle = CalculateThrowAngle(throwAngle);
+        GameObject rock2 = Instantiate(rockPrefab, throwPoint.position, Quaternion.identity);
+        Vector3 initialVelocity2 = CalculateInitialVelocity(throwPoint.position, target.position, _throw_angle - 5);
+        GameObject rock3 = Instantiate(rockPrefab, throwPoint.position, Quaternion.identity);
+        Vector3 initialVelocity3 = CalculateInitialVelocity(throwPoint.position, target.position, _throw_angle + 5);
+        Rigidbody2D rb2 = rock2.GetComponent<Rigidbody2D>();
+        rock2.GetComponent<RockController>().throwBy = gameObject;
+        if (rb2 != null)
+        {
+            rb2.velocity = initialVelocity2;
+        }
+        Rigidbody2D rb3 = rock3.GetComponent<Rigidbody2D>();
+        rock3.GetComponent<RockController>().throwBy = gameObject;
+        if (rb3 != null)
+        {
+            rb3.velocity = initialVelocity3;
         }
     }
 

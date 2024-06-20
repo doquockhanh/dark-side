@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -97,6 +98,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Die() {
-        GameManager.Instance.ResumeGame();
+        Scene currentScene = SceneManager.GetActiveScene();
+        
+        SceneManager.LoadScene(currentScene.name);
     }
 }

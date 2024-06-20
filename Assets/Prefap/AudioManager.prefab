@@ -307,5 +307,5 @@ MonoBehaviour:
   background: {fileID: 8300000, guid: 7386ccbfcfa57e4488aaadda219277f5, type: 3}
   hit: {fileID: 8300000, guid: 0bddcb411d826e14bb26d40ae45d8e22, type: 3}
   shoot: {fileID: 8300000, guid: 14f24de2a9a70154e96297de25e2184c, type: 3}
+  explosion: {fileID: 8300000, guid: dcd95f0582ba80445872b319b645baed, type: 3}
   win: {fileID: 8300000, guid: 2c4bc183a5df5aa4baf7c4fcf236a2de, type: 3}
-  take: {fileID: 8300000, guid: d1bef3102d08ba944ac7bcac65733a26, type: 3}

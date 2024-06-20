@@ -14,6 +14,8 @@ public class Lv1Tasks : MonoBehaviour
     private TaskManager tm;
     private KillTask task1;
     private DestroyTask task2;
+    public int enemyToKill = 5;
+    public int lightBubToDestroy = 5;
 
     void Start()
     {
@@ -31,15 +33,15 @@ public class Lv1Tasks : MonoBehaviour
             return;
 
 
-        // task1 = new("Kill 5 Enemies", 5);
-        // task1.OnKilled += OnKilled;
-        // tm.AddTask(task1);
-        // task2 = new("Destroy 4 light bubs", 4);
-        // task2.OnDestroyTarget += OnDestroyTarget;
-        // tm.AddTask(task2);
+        task1 = new("Kill 5 Enemies", enemyToKill);
+        task1.OnKilled += OnKilled;
+        tm.AddTask(task1);
+        task2 = new("Destroy 4 light bubs", lightBubToDestroy);
+        task2.OnDestroyTarget += OnDestroyTarget;
+        tm.AddTask(task2);
 
-        // missionText1.text = $"{task1.TaskName} {task1.EnemiesKilled}/{task1.EnemiesToKill}";
-        // missionText2.text = $"{task2.TaskName} {task2.TargetDestroyed}/{task2.TargetToDestroy}";
+        missionText1.text = $"{task1.TaskName} {task1.EnemiesKilled}/{task1.EnemiesToKill}";
+        missionText2.text = $"{task2.TaskName} {task2.TargetDestroyed}/{task2.TargetToDestroy}";
     }
 
     private void OnKilled(KillTask task)

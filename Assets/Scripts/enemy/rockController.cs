@@ -60,6 +60,7 @@ public class RockController : MonoBehaviour
         GameObject expolosion = Instantiate(explosionPrefap, transform.position, Quaternion.identity);
         Vector3 scale = expolosion.transform.localScale;
         expolosion.transform.localScale = new Vector3(scale.x * explosionRange, scale.y * explosionRange, 1);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.explosion);
         Destroy(gameObject);
     }
 

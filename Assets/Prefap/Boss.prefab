@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 6967151182376548263}
   - component: {fileID: 1912796438098436463}
   - component: {fileID: 7780934887410023148}
-  - component: {fileID: -4600305289357467746}
+  - component: {fileID: -3990196358689842934}
   m_Layer: 0
   m_Name: Boss
   m_TagString: enemy
@@ -137,14 +137,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d1009c74dd04145bc57b9d6a92e9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heath: 50
-  maxHeath: 50
+  heath: 200
+  maxHeath: 200
   damage: 10
   exp: 0
   lv: 1
   maxExp: 10
-  lvDmg: 2
-  lvHeath: 3
+  lvDmg: 3
+  lvHeath: 30
   lvExp: 2
 --- !u!114 &6004331583562646319
 MonoBehaviour:
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HpBarPrefap: {fileID: 587699268525428577, guid: 7626bc53c30b3e8479ae0a7c251ca843, type: 3}
   hpBarWidth: 2
-  hpBarHeight: 3
+  hpBarHeight: 2
   hpBarPosY: 10
   damageTextPrefab: {fileID: 0}
   expTextPrefab: {fileID: 0}
@@ -278,13 +278,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6153897b4e688ff43b5b8d28d96ce6a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rockPrefab: {fileID: 4532331287038438446, guid: 1b0cc42a875e90247a8f7a29f22b9a34, type: 3}
+  rockPrefab: {fileID: 6955156042347310695, guid: 00d73577fac772c4385ba4bd693a27d0, type: 3}
   throwInterval: 3
   throwAngle: 35
   throwAngleDiff: 0
   throwPowerDiff: 0
+  maxForce: 20
+  minForce: 2
   attacking: 1
---- !u!114 &-4600305289357467746
+  isBosstype: 1
+--- !u!114 &-3990196358689842934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,13 +296,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4087667747324645014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e340f775a15dee4d9d8218abd3290c5, type: 3}
+  m_Script: {fileID: 11500000, guid: cc18520da0b8238489d7de6417ba98a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDetectbulletRange: 5
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 64
+  enemyDetectbulletRange: 15
+  detectRange: 45
 --- !u!1 &4816673472596265710
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +326,7 @@ Transform:
   m_GameObject: {fileID: 4816673472596265710}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.68, z: 0}
+  m_LocalPosition: {x: 0.01, y: 0.33, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []

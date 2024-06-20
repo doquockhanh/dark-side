@@ -21,8 +21,16 @@ public class Stats : MonoBehaviour
     void Awake()
     {
         hpBar = transform.GetComponent<HpBar>();
-        hpBar.UpdateHealth(heath, maxHeath);
+        StartCoroutine(UpdateHeath());
+    }
 
+    private IEnumerator UpdateHeath()
+    {
+        while (true)
+        {
+            hpBar.UpdateHealth(heath, maxHeath);
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     public void TakeDamage(float damage)
@@ -67,7 +75,8 @@ public class Stats : MonoBehaviour
         damage += lvDmg * lv;
         hpBar.UpdateHealth(heath, maxHeath);
 
-        if (OnLevelUp != null) {
+        if (OnLevelUp != null)
+        {
             OnLevelUp?.Invoke(this);
         }
     }

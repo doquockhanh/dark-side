@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 8104936635478500585}
   - component: {fileID: 8916024032961033845}
   - component: {fileID: 5570488845626391418}
+  - component: {fileID: 5722013864439365310}
   m_Layer: 0
   m_Name: enemy 2
   m_TagString: enemy
@@ -264,14 +265,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d1009c74dd04145bc57b9d6a92e9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heath: 3
-  maxHeath: 3
-  damage: 2
+  heath: 16
+  maxHeath: 16
+  damage: 8
   exp: 0
   lv: 1
   maxExp: 10
-  lvDmg: 1
-  lvHeath: 2
+  lvDmg: 2
+  lvHeath: 5
   lvExp: 1
 --- !u!114 &5074864626113925954
 MonoBehaviour:
@@ -388,6 +389,28 @@ MonoBehaviour:
   maxForce: 30
   minForce: 5
   attacking: 1
+  isBosstype: 0
+--- !u!95 &5722013864439365310
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6655093196396353287}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c804195a0144c741971c73ae8af000c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6912639970381220964
 GameObject:
   m_ObjectHideFlags: 0

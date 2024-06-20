@@ -103,14 +103,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d1009c74dd04145bc57b9d6a92e9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heath: 2
-  maxHeath: 2
+  heath: 11
+  maxHeath: 11
   damage: 2
   exp: 0
   lv: 1
   maxExp: 10
   lvDmg: 1
-  lvHeath: 1
+  lvHeath: 2
   lvExp: 1
 --- !u!114 &-1122425912555853850
 MonoBehaviour:

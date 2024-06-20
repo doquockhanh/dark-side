@@ -15,7 +15,7 @@ public class MoveAround : MonoBehaviour
     public float stopDelay = 1f;
     private float stopTimer;
     private Attack attack;
-
+    private Animator animator;
     void Start()
     {
         movingRight = false;
@@ -23,6 +23,8 @@ public class MoveAround : MonoBehaviour
         flipTimer = Random.Range(minFlipTime, maxFlipTime);
 
         attack = gameObject.GetComponent<Attack>();
+
+        TryGetComponent<Animator>(out animator);
     }
 
     void FixedUpdate()
@@ -32,14 +34,16 @@ public class MoveAround : MonoBehaviour
             stopDelay = 0.25f;
             speedUp = 3f;
         }
-        else {
+        else
+        {
             stopDelay = 1f;
             speedUp = 1f;
         }
-            
+
 
         if (stopTimer > 0)
         {
+            animator?.SetBool("walking", false);
             stopTimer -= Time.deltaTime;
             if (stopTimer <= 0)
             {
@@ -56,6 +60,7 @@ public class MoveAround : MonoBehaviour
             stopTimer = stopDelay;
         }
 
+        animator?.SetBool("walking", true);
         if (movingRight)
         {
             transform.Translate(moveSpeed * speedUp * Time.deltaTime * Vector2.right);

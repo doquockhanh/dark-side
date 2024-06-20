@@ -49,7 +49,6 @@ public class GameManager : Singleton<GameManager>
         if (PlayerPrefs.HasKey("Scene"))
         {
             int scene = int.Parse(PlayerPrefs.GetString("Scene"));
-            Debug.Log(scene);
             SceneManager.LoadScene(scene);
         }
         else
